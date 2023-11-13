@@ -1,0 +1,15 @@
+export const user = {
+  id: 1,
+  firstName: 'Khuong',
+  lastNAme: 'Mai',
+  email: 'kmai2@rrc.ca',
+  password: '123456',
+  phoneNumber: 12345679,
+  organization: 'RRC',
+  role: 'admin',
+  address: '101 Pembina Highway',
+  city: 'Winnipeg',
+  province: 'Manitoba',
+  country: 'Canada',
+  postalCode: 'R3T 1XH',
+}
