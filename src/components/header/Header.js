@@ -15,7 +15,7 @@ const Header = () => {
           </Link>
         </div>
         <Navbar className="flex items-center space-x-6 text-sm font-medium" />
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+        <div className="flex flex-1 items-center justify-end space-x-2 md:justify-end">
           <UserNav />
         </div>
       </div>
