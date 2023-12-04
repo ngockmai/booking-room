@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs'
 import NextAuth from 'next-auth/next'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
+await connectDB()
 export const authOptions = {
   providers: [
     CredentialsProvider({
@@ -27,7 +28,7 @@ export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/login',
-    error: '/errors',
+    // error: '/errors',
   },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }) {
@@ -59,25 +60,26 @@ export { handler as GET, handler as POST }
 /*----------------------------------------------*/
 
 async function getUserByEmail({ email }) {
-  await connectDB()
   // console.log('email', email)
   const user = await User.findOne({ email }).select('-password')
   // console.log(user)
   if (!user) throw new Error('Email does not exist!')
 
   return { ...user._doc, _id: user._id.toString() }
-  // return user
 }
 
 async function loginWithCredentials({ email, password }) {
-  await connectDB()
-  const user = await User.findOne({ email })
+  try {
+    const user = await User.findOne({ email })
 
-  if (!user) throw new Error('Email does not exist!')
+    if (!user) throw new Error('Email does not exist!')
 
-  const compare = await bcrypt.compare(password, user.password)
-  if (!compare) throw new Error('Password does not match!')
+    const compare = await bcrypt.compare(password, user.password)
+    if (!compare) throw new Error('Password does not match!')
 
-  return { ...user._doc, _id: user._id.toString() }
-  // return user
+    return { ...user._doc, _id: user._id.toString() }
+  } catch (error) {
+    // console.log(error)
+    return { message: error.message, statusCode: 500 }
+  }
 }

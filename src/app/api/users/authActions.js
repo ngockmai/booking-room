@@ -88,7 +88,8 @@ export async function verifyWithCredentials(token) {
     // console.log(newUser)
     return { message: 'Verify Success!', statusCode: 200 }
   } catch (error) {
-    redirect(`/errors?error=${error.message}`)
+    // redirect(`/errors?error=${error.message}`)
+    return { message: error.message, statusCode: 500 }
   }
 }
 

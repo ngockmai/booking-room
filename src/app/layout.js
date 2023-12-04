@@ -1,5 +1,6 @@
 import { AuthProvider } from './(auth)/Provider'
 import './globals.css'
+import { Providers } from './providers'
 
 export const metadata = {
   title: 'UI-UX Labs',
@@ -8,11 +9,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen bg-background font-sans">
-        <AuthProvider>
-          <main>{children}</main>
-        </AuthProvider>
+    <html lang="en">
+      <body>
+        <Providers>
+          <AuthProvider>
+            <main>{children}</main>
+          </AuthProvider>
+        </Providers>
       </body>
     </html>
   )
