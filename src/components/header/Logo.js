@@ -11,7 +11,7 @@ const Logo = () => {
         height={40}
       />
       <div className="hidden h-6 text-xl font-semibold sm:block">
-        Khuong Room Booking
+        Room Booking
       </div>
     </div>
   )

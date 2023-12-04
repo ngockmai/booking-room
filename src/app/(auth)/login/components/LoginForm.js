@@ -43,7 +43,7 @@ export default function LoginForm({ callbackUrl }) {
       callbackUrl,
     })
 
-    console.log(email, password, callbackUrl)
+    // console.log(email, password, callbackUrl)
 
     // if (res?.ok) {
     //   router.replace('/')
@@ -51,13 +51,13 @@ export default function LoginForm({ callbackUrl }) {
 
     // console.log(res)
 
-    if (res?.statusCode === 401) {
-      setError('root.serverError', {
-        type: res.statusCode,
-        message: `${res.error}`,
-      })
-      setNotifyError(true)
-    }
+    // if (res?.statusCode === 401) {
+    //   setError('root.serverError', {
+    //     type: res.statusCode,
+    //     message: `${res.error}`,
+    //   })
+    //   setNotifyError(true)
+    // }
   }
 
   return (

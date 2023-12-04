@@ -75,6 +75,25 @@ const validationSchema = () => {
 
       return updateProfileSchema
     },
+    changePasswordSchema() {
+      const changePasswordSchema = Joi.object({
+        password: joiPassword.string().required(),
+        newPassword: joiPassword
+          .string()
+          .min(8)
+          .minOfSpecialCharacters(1)
+          .minOfUppercase(1)
+          .minOfNumeric(1)
+          .required(),
+        newPassword_confirmation: joiPassword
+          .any()
+          .valid(Joi.ref('newPassword'))
+          .required()
+          .messages({ 'any.only': 'Password does not match' }),
+      })
+
+      return changePasswordSchema
+    },
   }
 }
 
